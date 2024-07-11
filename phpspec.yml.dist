@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Yaroslavche\SyliusTranslationPlugin
+        psr4_prefix: Yaroslavche\SyliusTranslationPlugin

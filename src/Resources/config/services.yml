@@ -16,8 +16,8 @@ services:
       $localeProvider: '@sylius.locale_provider'
       $kernelRootDir: '%kernel.project_dir%'
       $translatorPaths:
-        - '%translation_paths_1%'
-      $translatorDefaultPath: '%translation_default_path%'
+        - '%kernel.project_dir%/translations'
+      $translatorDefaultPath: '%kernel.project_dir%/translations'
       $cacheClearer: '@cache_clearer'
       $kernelTranslationsCacheDir: '%kernel.cache_dir%/translations'
       $warmer: '@translation.warmer'

@@ -156,7 +156,7 @@ class TranslationService
      */
     public function getFullMessageCatalogue(bool $forceRevalidate = false): MessageCatalogue
     {
-        $locales = Locales::getLocales();
+        $locales = array_keys($this->getAvailableLocales());
 
         if ($forceRevalidate) {
             $this->cache->delete(static::FULL_MESSAGE_CATALOGUE_CACHE_KEY);
@@ -167,12 +167,11 @@ class TranslationService
             static::FULL_MESSAGE_CATALOGUE_CACHE_KEY,
             function (ItemInterface $item) use ($locales) {
                 $catalogue = new MessageCatalogue($this->getDefaultLocaleCode());
-                $availableLocales = $this->getAvailableLocales();
                 $localeCode = $this->translator->getLocale();
-
-                foreach ($locales as $key => $currentLocaleCode) {
+                foreach ($locales as $currentLocaleCode) {
                     $this->translator->setLocale($currentLocaleCode);
                     $localeMessageCatalogue = $this->translator->getCatalogue($currentLocaleCode);
+
                     foreach ($localeMessageCatalogue->all() as $domain => $translations) {
                         foreach ($translations as $id => $translation) {
                             if (!$catalogue->has($id, $domain)) {
@@ -180,14 +179,11 @@ class TranslationService
                             }
                         }
                     }
-
-                    if (array_key_exists($currentLocaleCode, $availableLocales)) {
-                        $localeCustomMessageCatalogue = $this->getCustomMessageCatalogue($currentLocaleCode);
-                        foreach ($localeCustomMessageCatalogue->all() as $domain => $translations) {
-                            foreach ($translations as $id => $translation) {
-                                if (!$catalogue->has($id, $domain)) {
-                                    $catalogue->set($id, '', $domain);
-                                }
+                    $localeCustomMessageCatalogue = $this->getCustomMessageCatalogue($currentLocaleCode);
+                    foreach ($localeCustomMessageCatalogue->all() as $domain => $translations) {
+                        foreach ($translations as $id => $translation) {
+                            if (!$catalogue->has($id, $domain)) {
+                                $catalogue->set($id, '', $domain);
                             }
                         }
                     }

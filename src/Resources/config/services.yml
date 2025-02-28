@@ -13,7 +13,7 @@ services:
     arguments:
       $translator: '@translator'
       $localeRepository: '@sylius.repository.locale'
-      $localeProvider: '@sylius.locale_provider'
+      $localeProvider: '@sylius.provider.locale'
       $kernelRootDir: '%kernel.project_dir%'
       $translatorPaths:
         - '%kernel.project_dir%/translations'

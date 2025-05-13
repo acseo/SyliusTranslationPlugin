@@ -76,11 +76,6 @@ sylius_twig_hooks:
 
 
 
-
-```
-
-
-
 Install assets and clear cache.
 ```bash
 $ yarn build

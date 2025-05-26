@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Yaroslavche\SyliusTranslationPlugin\Service\TranslationService;
 
-use function Safe\sprintf;
+use function \sprintf;
 
 final class TranslationController extends AbstractController
 {

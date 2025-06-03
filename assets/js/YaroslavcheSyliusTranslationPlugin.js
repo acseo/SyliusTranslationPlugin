@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Snotify, { SnotifyPosition } from "vue-snotify";
-import { store } from "./store";
 import app from "./app.vue";
+import { store } from "./store";
 
 Vue.config.productionTip = false;
 

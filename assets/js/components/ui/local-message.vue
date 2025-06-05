@@ -6,7 +6,7 @@
                     {{ filter.domain }}
                 </h3>
                 <h3 v-else class="card-title fst-italic text-secondary">
-                    No domain selected
+                  {{ t('no_domain_selected') }}
                 </h3>
             </div>
             <div class="card-body">
@@ -33,7 +33,7 @@
             <div class="card-body">
                 <template v-if="Object.keys(messages).length === 0">
                     <div class="alert alert-info" role="alert">
-                        No data found
+                      {{ t('no_data_found') }}
                     </div>
                 </template>
                 <div class="row my-2" v-for="(message, id) in messages">
@@ -86,6 +86,7 @@
 import { mapGetters } from "vuex";
 import icon from "../lib/icon.vue";
 import addMessageModal from "./add-message-modal.vue";
+import t from "../../translations/index.js";
 
 export default {
     name: "YaroslavcheSyliusTranslationPluginLocaleMessages",
@@ -180,6 +181,7 @@ export default {
         },
     },
     methods: {
+        t,
         showTooltip: function(id) {
             if (id.length > this.idMaxLength) {
                 return {

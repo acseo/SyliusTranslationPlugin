@@ -1,6 +1,6 @@
 <template>
     <div class="mb-3 field">
-        <label class="form-label">Select Language</label>
+        <label class="form-label">{{ t("select_language_label") }}</label>
         <div class="ts-wrapper">
             <div class="ts-control">
                 <span v-if="selectedNewLocale" class="badge me-1">
@@ -16,7 +16,7 @@
                     @keydown="dropdownOpen = true"
                     @focus="dropdownOpen = true"
                     @blur="dropdownOpen = false"
-                    :placeholder="!selectedNewLocale ? 'Search…' : ''"
+                    :placeholder="!selectedNewLocale ? t('search_placeholder') : ''"
                 />
             </div>
             <div
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <button :disabled="!selectedNewLocale" class="btn btn-primary ms-1" @click="addLocale">
-                Add
+                {{ t("add_button") }}
             </button>
         </div>
     </div>
@@ -45,6 +45,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import t from "../../translations/index.js";
+
 export default {
     name: "ui-select",
     data() {
@@ -69,6 +71,7 @@ export default {
         },
     },
     methods: {
+        t,
         selectLocale(localeCode) {
             this.selectedNewLocale = localeCode;
             this.dropdownOpen = false;

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Snotify, { SnotifyPosition } from "vue-snotify";
+import messages from "./translations/index.js";
 import app from "./app.vue";
 import { store } from "./store";
 

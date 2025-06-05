@@ -19,15 +19,15 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            Add new message
+                          {{ t('add_new_message') }}
                         </h5>
                     </div>
                     <div class="modal-body">
                         <loading v-if="isLoading" :isCurtain="true" />
                         <ui-select-domain v-model="newMessage.domain" />
                         <div class="mt-3 field">
-                            <label for="basic-url" class="form-label">Translation Id</label>
-                            <input
+                          <label for="basic-url" class="form-label">{{ t('translation_id') }}</label>
+                          <input
                                 :disabled="isLoading"
                                 type="text"
                                 class="form-control"
@@ -38,8 +38,8 @@
                             />
                         </div>
                         <div class="mt-3 field">
-                            <label for="basic-url" class="form-label">Translation</label>
-                            <input
+                            <label for="basic-url" class="form-label">{{ t('translation') }}</label>
+                        <input
                                 :disabled="isLoading"
                                 type="text"
                                 class="form-control"
@@ -47,7 +47,7 @@
                                 aria-describedby="basic-addon3 basic-addon4"
                                 v-model="newMessage.message"
                                 maxlength="255"
-                            />
+                        />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -57,7 +57,7 @@
                             class="btn btn-secondary"
                             @click="close"
                         >
-                            <span>Cancel</span>
+                        <span>{{ t('cancel') }}</span>
                         </button>
                         <button
                             :disabled="!newMessage.id || !newMessage.message || isLoading"
@@ -65,7 +65,7 @@
                             class="btn btn-primary"
                             @click="addTranslationMessage"
                         >
-                            <span>Add</span>
+                        <span>{{ t('add') }}</span>
                         </button>
                     </div>
                 </div>
@@ -79,6 +79,8 @@ import { mapGetters } from "vuex";
 import icon from "../lib/icon.vue";
 import loading from "../ui/loading.vue";
 import uiSelectDomain from "./select-domain.vue";
+import t from "../../translations/index.js";
+
 export default {
     name: "add-message-modal",
     components: {
@@ -97,6 +99,7 @@ export default {
         };
     },
     methods: {
+        t,
         open() {
             this.showModal = true;
             this.newMessage = {

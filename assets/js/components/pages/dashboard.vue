@@ -3,22 +3,22 @@
         <div class="row mt-3">
             <card-value
                 :loading="availableLocalesLoader"
-                label="Sylius available locales"
+                :label="t('available_locales')"
                 :value="totalAvailableLocalesCount"
             />
             <card-value
                 :loading="fullMessageCatalogueLoader"
-                label="Total domains count"
+                :label="t('total_domains_count')"
                 :value="totalDomainsCount"
             />
             <card-value
                 :loading="fullMessageCatalogueLoader"
-                label="Total messages count"
+                :label="t('total_messages_count')"
                 :value="totalMessagesCount"
             />
             <card-value
                 :loading="totalTranslationProgressPercentageLoader"
-                label="Total translation progress"
+                :label="t('translation_progress')"
                 :value="totalTranslationProgressPercentage"
             />
         </div>
@@ -28,16 +28,16 @@
         <div v-show="Object.keys(availableLocales).length > 0">
             <ui-table
                 :columns="[
-                    'Language',
-                    'Translated messages',
-                    'Untranslated messages',
-                    'Translation progress',
-                    'Progress',
-                    'Action',
-                ]"
+          t('language'),
+          t('translated_messages'),
+          t('untranslated_messages'),
+          t('translation_progress'),
+          t('progress'),
+          t('action'),
+        ]"
             >
                 <row-local-values
-                    v-for="(languageName, localeCode) in availableLocales"
+                    v-for="(languageName, localeCode, index) in availableLocales"
                     :key="index"
                     :localeCode="localeCode"
                 />
@@ -57,6 +57,7 @@ import cardValue from "../ui/card-value.vue";
 import progressbar from "../ui/progressbar.vue";
 import uiSelectLanguage from "../ui/select-language.vue";
 import uiTable from "../ui/table.vue";
+import t from "../../translations/index.js";
 
 export default {
     name: "page-dashboard",
@@ -74,6 +75,9 @@ export default {
             totalTranslationProgressPercentageLoader: true,
             totalTranslationProgressPercentageValue: 0,
         };
+    },
+    methods: {
+      t
     },
     computed: {
         ...mapGetters([

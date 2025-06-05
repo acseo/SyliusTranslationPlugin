@@ -19,13 +19,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            Confimation
+                          {{ t('confirm_delete_title') }}
                         </h5>
                     </div>
                     <div class="modal-body">
                         <loading v-if="isLoading" :isCurtain="true" />
                         <p class="lead">
-                            Are you sure you want to delete
+                            {{ t('confirm_delete_message') }}
                             <span class="fw-bold">{{ localeCode }}</span> ?
                         </p>
                     </div>
@@ -36,7 +36,7 @@
                             class="btn btn-secondary"
                             @click="close"
                         >
-                            <span>Cancel</span>
+                          <span>{{ t('cancel') }}</span>
                         </button>
                         <button
                             :disabled="isLoading"
@@ -44,7 +44,7 @@
                             class="btn btn-danger"
                             @click="removeLocale"
                         >
-                            <span>Delete</span>
+                          <span>{{ t('delete') }}</span>
                         </button>
                     </div>
                 </div>
@@ -56,6 +56,8 @@
 <script>
 import icon from "../lib/icon.vue";
 import loading from "../ui/loading.vue";
+import t from "../../translations/index.js";
+
 export default {
     name: "confirm-delete-local-modal",
     components: {
@@ -75,6 +77,7 @@ export default {
         };
     },
     methods: {
+        t,
         open() {
             this.showModal = true;
         },

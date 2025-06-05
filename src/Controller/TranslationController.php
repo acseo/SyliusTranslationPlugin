@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Yaroslavche\SyliusTranslationPlugin\Service\TranslationService;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function \sprintf;
 
@@ -19,15 +20,18 @@ final class TranslationController extends AbstractController
     /**
      * @var TranslationService $translationService
      */
-    private $translationService;
+    private TranslationService $translationService;
+
+    private TranslatorInterface $translator;
 
     /**
      * TranslationController constructor.
      * @param TranslationService $translationService
      */
-    public function __construct(TranslationService $translationService)
+    public function __construct(TranslationService $translationService, TranslatorInterface $translator)
     {
         $this->translationService = $translationService;
+        $this->translator = $translator;
     }
 
     /**
@@ -112,7 +116,7 @@ final class TranslationController extends AbstractController
         }
         return $this->json([
             'status' => 'success',
-            'message' => 'Message successfully updated.',
+            'message' =>  $this->translator->trans('message.successfully.updated', []),
             'reloadFullCatalogue' => $reloadFullCatalogue
         ]);
     }
@@ -142,7 +146,7 @@ final class TranslationController extends AbstractController
         $requestLocaleCode = $request->request->get('localeCode');
         try {
             $this->translationService->removeLocale($requestLocaleCode);
-            $message = sprintf('Successfully removed locale code "%s"', $requestLocaleCode);
+            $this->translator->trans('locale.successfully.remove', []);
             return $this->json(['status' => 'success', 'message' => $message]);
         } catch (Exception $exception) {
             return $this->json(['status' => 'error', 'message' => $exception->getMessage()]);

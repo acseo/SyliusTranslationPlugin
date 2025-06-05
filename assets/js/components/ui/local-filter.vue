@@ -2,7 +2,7 @@
     <div class="col-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Domain</h3>
+              <h3 class="card-title">{{ t('domain') }}</h3>
             </div>
             <div class="card-body">
                 <div
@@ -28,7 +28,7 @@
         </div>
         <div class="card mt-3">
             <div class="card-header">
-                <h3 class="card-title">Filter</h3>
+              <h3 class="card-title">{{ t('filter') }}</h3>
             </div>
             <div class="card-body">
                 <div class="form-check form-switch">
@@ -39,7 +39,7 @@
                         id="filterTranslated"
                         v-model="showTranslated"
                     />
-                    <label class="form-check-label" for="filterTranslated">Show Translated</label>
+                  <label class="form-check-label" for="filterTranslated">{{ t('show_translated') }}</label>
                 </div>
 
                 <div class="form-check form-switch" v-show="showTranslated">
@@ -50,7 +50,7 @@
                         id="filterCustom"
                         v-model="showCustom"
                     />
-                    <label class="form-check-label" for="filterCustom">Only Custom</label>
+                  <label class="form-check-label" for="filterCustom">{{ t('only_custom') }}</label>
                 </div>
                 <div class="form-check form-switch" v-show="showTranslated">
                     <input
@@ -60,9 +60,8 @@
                         id="filterUntranslated"
                         v-model="showUntranslated"
                     />
-                    <label class="form-check-label" for="filterUntranslated"
-                        >Show Untranslated</label
-                    >
+                    <label class="form-check-label" for="filterUntranslated">{{ t('show_untranslated') }}</label>
+
                 </div>
             </div>
         </div>
@@ -72,6 +71,8 @@
 <script>
 import { mapGetters } from "vuex";
 import icon from "../lib/icon.vue";
+import t from "../../translations/index.js";
+
 export default {
     name: "ui-local-filter",
     components: {
@@ -103,6 +104,7 @@ export default {
         },
     },
     methods: {
+        t,
         setFilter: function() {
             const filter = {
                 showTranslated: this.showTranslated,

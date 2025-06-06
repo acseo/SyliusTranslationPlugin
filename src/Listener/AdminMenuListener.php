@@ -16,7 +16,7 @@ final class AdminMenuListener
         $menu
             ->getChild('configuration')
             ->addChild('translation_dashboard', ['route' => 'yaroslavche_sylius_translation_plugin_dashboard'])
-            ->setLabel('Translation')
+            ->setLabel('admin.menu.translation')
             ->setLabelAttribute('icon', 'translate')
         ;
     }

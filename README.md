@@ -43,6 +43,39 @@ yaroslavche_sylius_translation_plugin:
     resource: "@YaroslavcheSyliusTranslationPlugin/Resources/config/admin_routing.yml"
 ```
 
+Add twig_hook in v2 :
+
+```yaml
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.base#stylesheets':
+            app_styles:
+                template: 'admin/stylesheets.html.twig'
+        'sylius_admin.base#javascripts':
+            app_javascripts:
+                template: 'admin/javascripts.html.twig'
+
+        'sylius_shop.base#stylesheets':
+            app_styles:
+                template: 'shop/stylesheets.html.twig'
+        'sylius_shop.base#javascripts':
+            app_javascripts:
+                template: 'shop/javascripts.html.twig'
+
+        'sylius_admin.translation.index':
+            sidebar:
+                template: '@SyliusAdmin/shared/crud/common/sidebar.html.twig'
+                priority: 200
+            navbar:
+                template: '@SyliusAdmin/shared/crud/common/navbar.html.twig'
+                priority: 100
+            content:
+                template: '@YaroslavcheSyliusTranslationPlugin/translation.html.twig'
+                priority: 0
+```
+
+
+
 Install assets and clear cache.
 ```bash
 $ yarn build

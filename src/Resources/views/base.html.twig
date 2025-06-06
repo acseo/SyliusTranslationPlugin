@@ -1,7 +1,4 @@
-{% extends '@SyliusAdmin/layout.html.twig' %}
-
-{% block title %}Translation | Sylius{% endblock %}
-
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -10,11 +7,10 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
 
     {% include '@YaroslavcheSyliusTranslationPlugin/_javascripts.html.twig' %}
 {% endblock %}
 
-{% block content %}
-    <div id="yaroslavche-sylius-translation-plugin"></div>
+{% block body %}
+    {% hook ['sylius_admin.translation.index'] %}
 {% endblock %}

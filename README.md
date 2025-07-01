@@ -12,7 +12,7 @@ In the admin panel view for each locale (enabled in the Sylius) shows how many m
 ## Installation
 
 ```bash
-$ composer require yaroslavche/sylius-translation-plugin
+$ composer require acseo/sylius-translation-plugin
 ```
 
 Register bundle:

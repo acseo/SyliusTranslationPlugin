@@ -80,8 +80,11 @@ final class TranslationController extends AbstractController
      */
     public function fetchLocaleMessageCatalogues(Request $request): JsonResponse
     {
-        $localeCode = $request->request->get('localeCode');
+        $content = $request->getContent();
+        $data = json_decode($content, true);
+        $localeCode = $data['localeCode'] ?? null;
         $localeCode = $localeCode === 'en_US' ? 'en' : $localeCode;
+
         try {
             $translated = $this->translationService->getTranslatedMessageCatalogue($localeCode);
             $custom = $this->translationService->getCustomMessageCatalogue($localeCode);
